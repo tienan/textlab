@@ -1,4 +1,4 @@
-
+#encoding:utf-8
 require 'tk'
 def make_win
   root=TkRoot.new{
