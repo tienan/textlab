@@ -1,25 +1,52 @@
-#encoding:utf-8
-require 'tk'
-def make_win
-  root=TkRoot.new{
-    title "检验科在岗操练软件"
-  }
-  begin
-    $win.destroy
-  rescue
-  end
-  $win = TkToplevel.new(root)
-  TkButton.new($win) {
-    text 'Window Dismiss'
-    command "$win.destroy"
-    pack
-  }
-end
+require "tk"
 
-TkButton.new {
-  text 'make Window'
-  command 'make_win'
-  pack('fill' => 'x')
+root = TkRoot.new
+root.title = "Window"
+
+
+menu_click = Proc.new {
+  Tk.messageBox(
+    'type'    => "ok",  
+    'icon'    => "info",
+    'title'   => "Title",
+    'message' => "Message"
+  )
 }
+
+file_menu = TkMenu.new(root)
+
+file_menu.add('command',
+              'label'     => "New...",
+              'command'   => menu_click,
+              'underline' => 0)
+file_menu.add('command',
+              'label'     => "Open...",
+              'command'   => menu_click,
+              'underline' => 0)
+file_menu.add('command',
+              'label'     => "Close",
+              'command'   => menu_click,
+              'underline' => 0)
+file_menu.add('separator')
+file_menu.add('command',
+              'label'     => "Save",
+              'command'   => menu_click,
+              'underline' => 0)
+file_menu.add('command',
+              'label'     => "Save As...",
+              'command'   => menu_click,
+              'underline' => 5)
+file_menu.add('separator')
+file_menu.add('command',
+              'label'     => "Exit",
+              'command'   => menu_click,
+              'underline' => 3)
+
+menu_bar = TkMenu.new
+menu_bar.add('cascade',
+             'menu'  => file_menu,
+             'label' => "File")
+
+root.menu(menu_bar)
 
 Tk.mainloop
