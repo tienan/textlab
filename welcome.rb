@@ -1,47 +1,69 @@
 # encoding:utf-8
 
-require 'gtk2'
+require 'tk'
 
-window=Gtk::Window.new
-window.title="Instant Messager"
-window.default_width=500
+root = TkRoot.new
+root.title = "Window"
 
-toolbar=Gtk::Toolbar.new
-toolbar.append("Announce", nil,nil, Gtk::Image.new("add_announce.png")){
-  toolbar.toolbar_style = Gtk::Toolbar::ICONS
+var=TkVariable.new
+TkEntry.new(root){
+  text var
+  pack
+}  
+TkEntry.new(root){
+  text var
+  pack
 }
-toolbar.append("Add Buddy", nil,nil, Gtk::Image.new("add_buddy.png")){
-  toolbar.toolbar_style = Gtk::Toolbar::ICONS
+TkButton.new(root){
+  text "变色"
+  pack :padx=>2,:pady=>2,:side=>'bottom'
+  command{
+    Tk.messageBox(
+    'type'    => "ok",  
+    'icon'    => "info",
+    'title'   => "Title",
+    'message' => var.value
+    )
+  }
 }
 
-vbox=Gtk::VBox.new(false,0)
-window.add vbox
+#
 
-vpaned = Gtk::VPaned.new
-vpaned.set_border_width(5)
+#
+#entry1 = TkEntry.new(root)
+#entry2 = TkEntry.new(root) do
+#  show '*'
+#end
+#lab1 = TkLabel.new(root){
+#  text entry1.textvariable
+#}  
+#
+#
+#
+#variable1 = TkVariable.new
+#variable2 = TkVariable.new
+#entry1.textvariable = variable1
+#entry2.textvariable = variable2
+#variable1.value = "Enter any text value"
+#variable2.value = "Enter any confidential value"
+#lab1 = TkLabel.new(root){
+#  text entry1.textvariable.value
+#} 
+#entry1.place('height' => 25,
+#            'width'  => 150,
+#            'x'      => 10,
+#            'y'      => 10)
+#
+#entry2.place('height' => 25,
+#            'width'  => 150,
+#            'x'      => 10,
+#            'y'      => 40)
+#
+#lab1.place('height' => 25,
+#            'width'  => 150,
+#            'x'      => 10,
+#            'y'      => 60)
 
-view1 = Gtk::TextView.new
-buffer = view1.buffer
 
-view2 = Gtk::TextView.new(buffer)
-sw = Gtk::ScrolledWindow.new(nil, nil)
-sw.set_policy(Gtk::POLICY_AUTOMATIC,Gtk::POLICY_AUTOMATIC)
-vpaned.add1(sw)
-sw.add(view1)
 
-sw = Gtk::ScrolledWindow.new(nil, nil)
-sw.set_policy(Gtk::POLICY_AUTOMATIC,Gtk::POLICY_AUTOMATIC)
-vpaned.add2(sw)
-sw.add(view2)
-
-menubar=Gtk::MenuBar.new
-menubar.append Gtk::MenuItem.new("File")
-menubar.append Gtk::MenuItem.new("Edit")
-menuitem=Gtk::MenuItem.new("About")
-menubar.append menuitem
-
-vbox.pack_start(menubar,true,true,0)
-vbox.pack_start(toolbar, true, true, 0)
-vbox.pack_start(vpaned, true, true, 0)
-window.show_all
-Gtk.main
+Tk.mainloop
