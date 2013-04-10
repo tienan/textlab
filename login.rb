@@ -9,7 +9,7 @@ class LoginWin
     }
     $loginWin=TkToplevel.new(root)
     begin
-      $win.destroy
+      $logiWwin.destroy
     rescue
     end
     #f2 = TkFrame.new(root) {
@@ -73,30 +73,30 @@ class LoginWin
       grid('padx'=>10, 'pady'=>10, 'row'=>3,'column'=>0)
     }
     #object = RegisterWin.new;object.initial
-    TkButton.new($loginWin) {
-      #  borderwidth 10
-      text '注册'
-      command proc {
-        reg = RegisterWin.new
-        reg.initial
-        $loginWin.destroy
-        #    f2 = TkFrame.new(root) {
-        #      grid('padx'=>10,'pady'=>10,'row'=>1,'column'=>0)
-        #    }
-        #    TkLabel.new(f2){
-        #      text '账号'
-        #      #   background "yellow"
-        #      #   foreground "blue"
-        #      grid('padx'=>10, 'pady'=>10, 'row'=>0,'column'=>0)
-        #    }
-      }
-      #  command proc {object = re}
-      #  command proc {exit}
-      #  load 'registerWin.rb'
-      grid('padx'=>10, 'pady'=>10, 'row'=>3,'column'=>1,'sticky'=>'E')
-      
-      
-    }
+#    TkButton.new($loginWin) {
+#      #  borderwidth 10
+#      text '注册'
+#      command proc {
+#        reg = RegisterWin.new
+#        reg.initial
+#        $loginWin.destroy
+#        #    f2 = TkFrame.new(root) {
+#        #      grid('padx'=>10,'pady'=>10,'row'=>1,'column'=>0)
+#        #    }
+#        #    TkLabel.new(f2){
+#        #      text '账号'
+#        #      #   background "yellow"
+#        #      #   foreground "blue"
+#        #      grid('padx'=>10, 'pady'=>10, 'row'=>0,'column'=>0)
+#        #    }
+#      }
+#      #  command proc {object = re}
+#      #  command proc {exit}
+#      #  load 'registerWin.rb'
+#      grid('padx'=>10, 'pady'=>10, 'row'=>3,'column'=>1,'sticky'=>'E')
+#      
+#      
+#    }
   end
 end
 

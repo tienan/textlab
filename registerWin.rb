@@ -7,11 +7,11 @@ class RegisterWin
     title "检验科在岗操练软件"
   }
     begin
-      $win.destroy
+      $regWin.destroy
     rescue
     end
-    $win = TkToplevel.new
-    f1 = TkFrame.new($win) {
+    $regWin = TkToplevel.new
+    f1 = TkFrame.new($regWin) {
       #  borderwidth 15
       #  background "grey"
       grid('padx'=>10, 'pady'=>10, 'row'=>1,'column'=>0)
