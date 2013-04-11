@@ -57,13 +57,14 @@ class RegisterWin
   cpw_entry.grid('padx'=>10, 'pady'=>10, 'row'=>3,'column'=>1)   
   TkButton.new(f1) {
     text '注册'
+    success_reg = "你的用户名是:"+ user_name.value + "密码是:"+ cpw_entry.value
     command {
       if cpw_entry.value == pw_entry.value
         Tk.messageBox(
     'type'    => "ok",  
     'icon'    => "info",
     'title'   => "Title",
-    'message' => cpw_entry.value
+    'message' => "你的用户名是:"+ user_name.value + ",密码是:"+ cpw_entry.value
         )
         $regWin.destroy
       else

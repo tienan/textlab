@@ -36,6 +36,54 @@ menu_bar.add('cascade',
 
 root.menu(menu_bar)
 
+instruction = ["使用说明:","首次使用请注册您的用户名","1. 点击  左上角 \"基本操作\"后，选择 注 册 项目","2. 弹出窗口的提示进行后续操作"]
+
+length = instruction.size  
+
+length.times do |t|
+  TkLabel.new(root){
+    text  instruction[t]
+    grid('padx'=>10, 'row'=>t,'column'=>0,'sticky'=>"W")
+    font "arial 10"
+    foreground "red"
+  }
+end
+
+
+#instruction = TkLabel.new(root){
+#  text "使用说明:"
+#  grid('padx'=>10, 'row'=>0,'column'=>0,'sticky'=>"W")
+#  font "arial 10"
+#}
+#content = TkLabel.new(root){
+#  text "首次使用请注册您的用户名" 
+#  grid('padx'=>10, 'row'=>1,'column'=>0,'sticky'=>"W")
+#  font "arial 10"
+#}
+#TkLabel.new(root){
+#  text "1. 点击  左上角 \"基本操作\"后，选择 注 册 项目 " 
+#  grid('padx'=>10, 'row'=>2,'column'=>0,'sticky'=>"W")
+#  font "arial 10"
+#}
+#TkLabel.new(root){
+#  text "2.  据弹出窗口的提示进行后续操作"
+#  grid('padx'=>10, 'row'=>3,'column'=>0,'sticky'=>"W")
+#  font "arial 10"
+#}
+#
+#TkLabel.new(root){
+#  text "2.  据弹出窗口的提示进行后续操作"
+#  grid('padx'=>10, 'row'=>3,'column'=>0,'sticky'=>"W")
+#  font "arial 10"
+#}
+#TkLabel.new(root){
+#  text "2.  据弹出窗口的提示进行后续操作"
+#  grid('padx'=>10, 'row'=>3,'column'=>0,'sticky'=>"W")
+#  font "arial 10"
+#}
+
+
+
 Tk.mainloop
 
 
