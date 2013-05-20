@@ -13,7 +13,7 @@ login = Proc.new {
   login.init
 }
 
-register = Proc.new {
+@@register = Proc.new {
   register = RegisterWin.new
   register.initial
 }
@@ -22,7 +22,7 @@ file_menu = TkMenu.new(root)
 
 file_menu.add('command',
               'label'     => "注册",
-              'command'   => register,
+              'command'   => @@register,
               'underline' => 0)
 file_menu.add('command',
               'label'     => "登录",
