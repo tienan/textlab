@@ -1,1 +1,3 @@
 db.testCollection.ensureIndex({"name":1},{"unique":true,"dropDups":true})
+D:\mongodb-win32-x86_64-v2.0-2011-12-29\bin>mongodump.exe -h localhost -d mydb -o d:\data\dump
+mongorestore -h dbhost -d dbname --directoryperdb dbdirectory 

@@ -2,39 +2,26 @@
 require "tk"
 require "./Sample"
 require "./registerWin"
+require "./person_page"
+require 'mongo'
+include Mongo
+
+
+
+
+
 class LoginWin
+  
   def init
-    root=TkRoot.new{
-      title "检验科在岗操练软件"
-    }
-    $loginWin=TkToplevel.new(root)
+    #    root=TkRoot.new{
+    #      title "检验科在岗操练软件"
+    #    }
+    
     begin
       $logiWwin.destroy
     rescue
     end
-    #f2 = TkFrame.new(root) {
-    #  #  borderwidth 15
-    #  #  background "grey"
-    ##  padx 150
-    ##  pady 200
-    #  grid('padx'=>10,'pady'=>10,'row'=>0,'column'=>1)
-    #}
-    #
-    #
-    #TkLabel.new(f2){
-    #  text '账号'
-    #  #   background "yellow"
-    #  #   foreground "blue"
-    #  grid('padx'=>10, 'pady'=>10, 'row'=>0,'column'=>0)
-    #}
-    #    f1 = TkFrame.new($loginWin) {
-    #      #  borderwidth 15
-    #      #  background "grey"
-    #      #  padx 150
-    #      #  pady 200
-    #      grid('padx'=>10, 'pady'=>10, 'row'=>1,'column'=>0)
-    #    }
-    #   标  题
+    $loginWin=TkToplevel.new
     TkLabel.new($loginWin){
       text  msg="检验科在岗操练软件"
       pack :padx=>10,:pady=>10,:side=>'top'
@@ -61,10 +48,10 @@ class LoginWin
       #   foreground "blue"
       grid('padx'=>10, 'pady'=>10, 'row'=>2,'column'=>0)
     }
-    cpw_entry = TkEntry.new($loginWin)
-    pass_word=TkVariable.new do 
-      show '*'
+    cpw_entry = TkEntry.new($loginWin)do
+         show '*'
     end
+    pass_word=TkVariable.new  
     cpw_entry.configure(:text => pass_word)
     cpw_entry.grid('padx'=>10, 'pady'=>10, 'row'=>2,'column'=>1)  
     
@@ -72,14 +59,21 @@ class LoginWin
     regb = TkButton.new($loginWin) {
       #  borderwidth 10
       text '登录'
-      command {
-        db = MongoClient.new("localhost", 27017).db("mydb")
-        coll = db.collection("testCollection")
-        coll.find("name"=>user_name,"pwd"=>pass_word)
-        p coll.count
-        if coll.count>0
+      command proc {
+        coll = $db.collection("testCollection")
+        result = coll.find(:name =>user_name.value,:pwd => pass_word.value)
+        p user_name.value, pass_word.value
+        if result.count==1
+          person = Person_page.new
+          person.init(user_name)
+        else
+          Tk.messageBox(
+    'type'    => "ok",  
+    'icon'    => "info",
+    'title'   => "Title",
+    'message' => "密码或用户名错误"
+          )
         end
-        
       }
       grid('padx'=>10, 'pady'=>10, 'row'=>3,'column'=>0)
     }

@@ -2,6 +2,9 @@
 require "tk"
 require "./login"
 require "./registerWin"
+require "./person_page"
+
+$db = MongoClient.new("localhost", 27017).db("mydb")
 
 root=TkRoot.new{
   title "检验科在岗操练软件"
@@ -13,21 +16,32 @@ login = Proc.new {
   login.init
 }
 
-@@register = Proc.new {
+register = Proc.new {
   register = RegisterWin.new
   register.initial
 }
+
+person = Proc.new{
+  person = Person_page.new
+  person.init("test")
+}
+
+
 
 file_menu = TkMenu.new(root)
 
 file_menu.add('command',
               'label'     => "注册",
-              'command'   => @@register,
+              'command'   => register,
               'underline' => 0)
 file_menu.add('command',
               'label'     => "登录",
               'command'   => login,
               'underline' => 0)
+#file_menu.add('command',
+#              'label'     => "个人情况",
+#              'command'   => person,
+#              'underline' => 0)
 
 menu_bar = TkMenu.new
 menu_bar.add('cascade',
@@ -36,7 +50,7 @@ menu_bar.add('cascade',
 
 root.menu(menu_bar)
 
-instruction = ["使用说明:","首次使用请注册您的用户名","1. 点击  左上角 \"基本操作\"后，选择 注 册 项目","2. 弹出窗口的提示进行后续操作"]
+instruction = ["使用说明:","首次使用请注册您的用户名","1. 点击  左上角 \"基本操作\"后，选择 注 册 项目","2. 根据弹出窗口的提示进行后续操作","3. 注册完成后，选择 \"登录\"项目，进入个人主页"]
 
 length = instruction.size  
 

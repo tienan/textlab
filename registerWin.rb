@@ -5,9 +5,9 @@ include Mongo
 
 class RegisterWin
   def initial
-    root=TkRoot.new{
-      title "检验科在岗操练软件"
-    }
+#    root=TkRoot.new{
+#      title "检验科在岗操练软件"
+#    }
     begin
       $regWin.destroy
     rescue
@@ -66,10 +66,10 @@ class RegisterWin
     command {
       if cpw_entry.value == pw_entry.value
         begin 
-          db = MongoClient.new("localhost", 27017).db("mydb")
-          coll = db.collection("testCollection")
+          coll = $db.collection("testCollection")
           doc = {"name" => user_name.value, "pwd" => cpw_entry.value}
           coll.insert(doc)
+#          coll.remove
           Tk.messageBox(
     'type'    => "ok",  
     'icon'    => "info",
