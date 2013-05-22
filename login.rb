@@ -62,7 +62,7 @@ class LoginWin
       command proc {
         coll = $db.collection("testCollection")
         result = coll.find(:name =>user_name.value,:pwd => pass_word.value)
-        p user_name.value, pass_word.value
+#        p user_name.value, pass_word.value
         if result.count==1
           person = Person_page.new
           person.init(user_name)
