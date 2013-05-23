@@ -1,6 +1,9 @@
 #encoding:utf-8
 require "tk"
 class Case_page
+  def init1
+    self.init(@img_path)
+  end
   def init(img_path)
     begin
       $case_page.destroy
@@ -72,5 +75,5 @@ root=TkRoot.new{
 }
 
 case_1 = Case_page.new
-case_1.init
+case_1.init1
 Tk.mainloop
