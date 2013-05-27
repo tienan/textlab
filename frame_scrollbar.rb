@@ -42,7 +42,7 @@ canvas.yscrollbar(vbar)
 #TkcLine.new(canvas, 0, 400, 400, 0)
 
 TkGrid.grid(canvas, vbar, 'sticky'=>'ns')
-TkGrid.grid(canvas,hbar,         'sticky'=>'ew')
+TkGrid.grid(canvas,hbar,  'sticky'=>'ew')
 
 #TkGrid.columnconfigure(root, 0, 'weight'=>1)
 #TkGrid.rowconfigure(   root, 0, 'weight'=>1)

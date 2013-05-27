@@ -69,6 +69,7 @@ class Magic_show
       }
       TkEntry.new(f_input){
         text label_value[t]
+        width 3
         grid('padx'=>10,'pady'=>10,'row'=>t+1,'column'=>1,'sticky'=>'W')
         
       }
