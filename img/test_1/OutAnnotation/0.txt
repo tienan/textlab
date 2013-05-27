@@ -1,0 +1,19 @@
+White Cell:1
+677:Left
+624:Top
+786:Right
+710:Bottom
+Red Cell:2
+463:Left
+357:Top
+541:Right
+414:Bottom
+449:Left
+457:Top
+522:Right
+515:Bottom
+Sperm:1
+251:Left
+247:Top
+320:Right
+299:Bottom
