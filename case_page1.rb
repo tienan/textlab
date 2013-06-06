@@ -69,7 +69,7 @@ class Case_page
     img_canvas = TkCanvas.new(img_contain ) {
       width   720
       height  500
-      scrollregion '-400 -400 500 400'
+      scrollregion '-100 -100 800 800'
       grid('padx'=>10, 'pady'=>10, 'row'=>0,'column'=>0)
     }
     #    TkcLine.new(img_canvas, 10, 0, 1000, 0)
@@ -110,7 +110,7 @@ class Case_page
         end
       end
     end
-    TkcWindow.new(img_canvas, 0,0, :window=>img_show)  
+    TkcWindow.new(img_canvas, 300,300, :window=>img_show)  
     
     #    image = TkPhotoImage.new
     #    image.file="D:\\workspace\\textlab_1\\img\\test_1\\_modify0.gif"
