@@ -1,6 +1,7 @@
 require "tk"
 require 'tkextlib/tile'
 require 'RMagick'
+require './draw'
 class Magic_show
   size_zoom=0.1
   
@@ -10,16 +11,22 @@ class Magic_show
       $show.destroy
     rescue
     end
+    $color = 'red'
     $show=TkToplevel.new($case_page)
+    
+    
+    
+    
     f_button=TkFrame.new($show){
       grid('padx'=>0, 'pady'=>0, 'row'=>0,'column'=>0,'sticky'=>'W')
       
     }
     label_set = ['白细胞数量','红细胞数量','上皮细胞数量','颗粒管型数量','透明管型','毒菌数量','细胞管型数量']
-    label_value = []
+    color_set = ['white','red','yellow','grey','black','green','blue']
+    $label_value = []
     len=label_set.size
     len.times do |t|
-      label_value[t]=TkVariable.new
+      $label_value[t]=TkVariable.new
       #      label_value[t].value=0;
     end
     open_image = TkPhotoImage.new
@@ -45,20 +52,32 @@ class Magic_show
     }
     
     #    
-    
-    len.times do |t|
-      TkButton.new( f_button){
-        text  button_label_set[t]
-        font "arial 10 bold"
-        grid('padx'=>0, 'pady'=>0, 'row'=>0,'column'=>t+3,'sticky'=>'W')
-        command proc{
-          label_value[t].value = label_value[t].value.to_i+1
-          p label_value[t].value
-          p 1
-        }
-      }
-    end
     f1=TkFrame.new($show){grid('padx'=>10, 'pady'=>10, 'row'=>1,'column'=>0)}
+    
+    $canvas = TkCanvas.new(f1) {
+      width   900
+      height  600
+      #      scrollregion '-800 -400 800 800'
+      pack
+      len.times do |t|
+        TkButton.new( f_button){
+          text  button_label_set[t]
+          font "arial 10 bold"
+          grid('padx'=>0, 'pady'=>0, 'row'=>0,'column'=>t+3,'sticky'=>'W')
+          command proc{
+            #          label_value[t].value = label_value[t].value.to_i+1
+            #          p label_value[t].value
+            #          p 1
+            $color = color_set[t]
+            Draw.new($show,$canvas,$color)
+            #          p $color
+          }
+        }
+      end
+      
+      
+    }
+    
     f_input = TkFrame.new($show){
       grid('padx'=>10, 'pady'=>10, 'row'=>1,'column'=>1)
       width=10
@@ -78,7 +97,7 @@ class Magic_show
       }
       
       TkEntry.new(f_input){
-        text label_value[t]
+        text $label_value[t]
         width 3
         grid('padx'=>10,'pady'=>10,'row'=>t+1,'column'=>1,'sticky'=>'W')
         
@@ -93,13 +112,13 @@ class Magic_show
     
     
     
-    canvas = TkCanvas.new(f1) {
-      width   900
-      height  600
-      #      scrollregion '-800 -400 800 800'
-      pack
-      
-    }
+    #    canvas = TkCanvas.new(f1) {
+    #      width   900
+    #      height  600
+    #      #      scrollregion '-800 -400 800 800'
+    #      pack
+    #      
+    #    }
     
     
     
@@ -111,7 +130,7 @@ class Magic_show
     
     
     image = TkPhotoImage.new('file' => './img/tmp.gif')
-    t=TkcImage.new(canvas,500, 300,'image' => image)
+    t=TkcImage.new($canvas,500, 300,'image' => image)
     
     #end of show gif code.
     #code to place a label to show text
@@ -147,9 +166,10 @@ class Magic_show
     #canvas.focus
     
     #    Tk.mainloop
-    canvas.bind('1',  proc{|e| p "#{e.x}, #{e.y}";
-      TkcRectangle.new(canvas, e.x,e.y,e.x+10, e.y+10)})
-    canvas.focus
+    #    canvas.bind('1',  proc{|e| p "#{e.x}, #{e.y}";
+    #      TkcRectangle.new(canvas, e.x,e.y,e.x+10, e.y+10)})
+    #    canvas.focus
+    Draw.new($show,$canvas,$color)
     
     
     file_menu = TkMenu.new($show)
