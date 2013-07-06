@@ -3,7 +3,7 @@ require 'tkextlib/tile'
 require 'RMagick'
 require './draw'
 class Magic_show
-  size_zoom=0.1
+  #  size_zoom=0.1
   
   def init(file)
     scale_factor=0.5
@@ -11,22 +11,19 @@ class Magic_show
       $show.destroy
     rescue
     end
-    $color = 'red'
-    $show=TkToplevel.new($case_page)
-    
-    
-    
-    
+    $color = 'white'
+    $color_index=0
+    $show=TkToplevel.new($case_page)    
     f_button=TkFrame.new($show){
       grid('padx'=>0, 'pady'=>0, 'row'=>0,'column'=>0,'sticky'=>'W')
       
     }
     label_set = ['白细胞数量','红细胞数量','上皮细胞数量','颗粒管型数量','透明管型','毒菌数量','细胞管型数量']
     color_set = ['white','red','yellow','grey','black','green','blue']
-    $label_value = []
+    #    $label_value = []
     len=label_set.size
     len.times do |t|
-      $label_value[t]=TkVariable.new
+      #      $label_value[t]=TkVariable.new
       #      label_value[t].value=0;
     end
     open_image = TkPhotoImage.new
@@ -65,11 +62,14 @@ class Magic_show
           font "arial 10 bold"
           grid('padx'=>0, 'pady'=>0, 'row'=>0,'column'=>t+3,'sticky'=>'W')
           command proc{
-            #          label_value[t].value = label_value[t].value.to_i+1
-            #          p label_value[t].value
-            #          p 1
+            #            $label_value[t].value = $label_value[t].value.to_i+1
+            #            p $label_value[t].value
+            #            $count=$count+1
+            #            p $count
+            #            #          p 1
             $color = color_set[t]
-            Draw.new($show,$canvas,$color)
+            $color_index=t
+            Draw.new($show,$canvas,$color,$color_index)
             #          p $color
           }
         }
@@ -78,32 +78,32 @@ class Magic_show
       
     }
     
-    f_input = TkFrame.new($show){
-      grid('padx'=>10, 'pady'=>10, 'row'=>1,'column'=>1)
-      width=10
-    }
-    TkLabel.new(f_input){
-      text  msg="已经标注的："
-      font "arial 10 bold"
-      grid('padx'=>10, 'pady'=>10, 'row'=>0,'column'=>0,'sticky'=>'W')
-    }
-    len = label_set.size
-    len.times do |t|
-      TkLabel.new(f_input){
-        text  msg= label_set[t]
-        pack :padx=>10,:pady=>10,:side=>'top'
-        font "arial 10 bold"
-        grid('padx'=>10, 'pady'=>10, 'row'=>t+1,'column'=>0,'sticky'=>'W')
-      }
-      
-      TkEntry.new(f_input){
-        text $label_value[t]
-        width 3
-        grid('padx'=>10,'pady'=>10,'row'=>t+1,'column'=>1,'sticky'=>'W')
-        
-      }
-      #      label_value[t]=tmp.value
-    end
+#    f_input = TkFrame.new($show){
+#      grid('padx'=>10, 'pady'=>10, 'row'=>1,'column'=>1)
+#      width=10
+#    }
+#    TkLabel.new(f_input){
+#      text  msg="已经标注的："
+#      font "arial 10 bold"
+#      grid('padx'=>10, 'pady'=>10, 'row'=>0,'column'=>0,'sticky'=>'W')
+#    }
+#    len = label_set.size
+#    len.times do |t|
+#      TkLabel.new(f_input){
+#        text  msg= label_set[t]
+#        pack :padx=>10,:pady=>10,:side=>'top'
+#        font "arial 10 bold"
+#        grid('padx'=>10, 'pady'=>10, 'row'=>t+1,'column'=>0,'sticky'=>'W')
+#      }
+#      
+#      TkEntry.new(f_input){
+#        text $label_value[t]
+#        width 3
+#        grid('padx'=>10,'pady'=>10,'row'=>t+1,'column'=>1,'sticky'=>'W')
+#        
+#      }
+#      #      label_value[t]=tmp.value
+#    end
     
     
     #    hbar = TkScrollbar.new(f1) { orient 'horiz' }
@@ -169,7 +169,7 @@ class Magic_show
     #    canvas.bind('1',  proc{|e| p "#{e.x}, #{e.y}";
     #      TkcRectangle.new(canvas, e.x,e.y,e.x+10, e.y+10)})
     #    canvas.focus
-    Draw.new($show,$canvas,$color)
+    Draw.new($show,$canvas,$color,$color_index)
     
     
     file_menu = TkMenu.new($show)

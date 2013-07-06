@@ -9,6 +9,8 @@ canvas = TkCanvas.new(root) {
 file = "D:\\workspace\\textlab_1\\img\\test_1\\0.gif"
 image = TkPhotoImage.new('file' => file)
 t=TkcImage.new(canvas, 100, 100,'image' => image)
+TkcRectangle.new(canvas, 0, 100, 10,10,
+                         'width' => 1,'outline'=>'red')
 #hbar = TkScrollbar.new(root) { orient 'horiz' }
 #vbar = TkScrollbar.new(root) { orient 'vert' }
 #canvas.xscrollbar(hbar)

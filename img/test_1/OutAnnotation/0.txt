@@ -1,17 +1,25 @@
 White Cell:1
-677:Left
-624:Top
-786:Right
-710:Bottom
-Red Cell:2
-463:Left
-357:Top
-541:Right
-414:Bottom
-449:Left
-457:Top
-522:Right
-515:Bottom
+504:Left
+491:Top
+613:Right
+577:Bottom
+Red Cell:4
+813:Left
+348:Top
+847:Right
+391:Bottom
+564:Left
+233:Top
+688:Right
+288:Bottom
+594:Left
+528:Top
+710:Right
+538:Bottom
+657:Left
+476:Top
+707:Right
+484:Bottom
 Sperm:1
 251:Left
 247:Top

@@ -19,6 +19,9 @@ class Case_page
     f1 = TkFrame.new($case_page) {
       grid('padx'=>10, 'pady'=>10, 'row'=>1,'column'=>0)
     }
+    
+    
+    
     TkLabel.new($case_page){
       text  msg="尿沉渣检验项"
       pack :padx=>10,:pady=>10,:side=>'top'
@@ -27,9 +30,16 @@ class Case_page
     }
     
     label_set = ['尿液中白细胞数量（个）','尿液中红细胞数量（个）','尿液中上皮细胞数量（个）','尿液中颗粒管型数量（个）','尿液中透明管型（个）','尿液中毒菌数量（个）','尿液中细胞管型数量（个）']
-    label_value = []
+    $label_value = []
     tmp=TkVariable.new
     len = label_set.size
+    
+    len.times do |t|
+      $label_value[t]=TkVariable.new
+      $label_value[t].value = 0
+      #      label_value[t].value=0;
+    end
+    
     len.times do |t|
       TkLabel.new(f1){
         text  msg= label_set[t]
@@ -38,7 +48,7 @@ class Case_page
         grid('padx'=>10, 'pady'=>10, 'row'=>t+1,'column'=>0)
       }
       TkEntry.new(f1){
-        text label_value[t]
+        text $label_value[t]
         width 4
         grid('padx'=>10,'pady'=>10,'row'=>t+1,'column'=>1)
       }
@@ -67,9 +77,9 @@ class Case_page
       grid('padx'=>10, 'pady'=>10, 'row'=>1,'column'=>2,'columnspan'=>"19",'rowspan'=>"19")
     }
     img_canvas = TkCanvas.new(img_contain ) {
-      width   720
+      width   320
       height  500
-      scrollregion '-100 -100 800 800'
+      scrollregion '-100 -600 400 1200'
       grid('padx'=>10, 'pady'=>10, 'row'=>0,'column'=>0)
     }
     #    TkcLine.new(img_canvas, 10, 0, 1000, 0)
@@ -100,7 +110,7 @@ class Case_page
             ms = Magic_show.new
             ms.init(img_path + pos.to_s + ".gif") 
           }
-          grid('padx'=>10, 'pady'=>10, 'row'=>position_x,'column'=>position_y)
+          grid('padx'=>10, 'pady'=>10, 'row'=>pos,'column'=>0)
         }
 #        h[pos] = b
         b.bind("Enter"){pos = b.cget('text').to_i}
@@ -110,7 +120,7 @@ class Case_page
         end
       end
     end
-    TkcWindow.new(img_canvas, 300,300, :window=>img_show)  
+    TkcWindow.new(img_canvas, 200,300, :window=>img_show)  
     
     #    image = TkPhotoImage.new
     #    image.file="D:\\workspace\\textlab_1\\img\\test_1\\_modify0.gif"
@@ -215,6 +225,7 @@ class Case_page
     #        text urine_color
     #        grid('padx'=>10,'pady'=>10,'row'=>1,'column'=>1)
     #      } 
+
   end
 end
 root=TkRoot.new{

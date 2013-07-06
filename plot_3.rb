@@ -70,4 +70,8 @@ canvas.bind('1',  proc{|e| p "#{e.x}, #{e.y}";
   TkcRectangle.new(canvas, e.x,e.y,e.x+10, e.y+10)})
 root.bind('Any-Key-d',  proc{|e| p "#{e.x}, #{e.y}"; 
   TkcRectangle.new(canvas, e.x,e.y,e.x-5, e.y-5)})
+  
+  TkcRectangle.new(@canvas, x, y, x,y,
+                         'width' => 1,'outline'=>color)
+  
 Tk.mainloop
