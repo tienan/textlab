@@ -70,6 +70,7 @@ length.times do |t|
     foreground "red"
   }
 end
+  
 
 
 #instruction = TkLabel.new(root){
